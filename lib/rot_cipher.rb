@@ -1,9 +1,10 @@
 class RotCipher
 
-  def initialize text
+  def initialize text, shift
     @text     = text
+    @shift    = shift.to_i
     @alphabet = ('a'..'z').to_a
-    @key      = Hash[@alphabet.zip(@alphabet.rotate 4 )]
+    @key      = Hash[@alphabet.zip(@alphabet.rotate @shift )]
   end
 
   def encode
