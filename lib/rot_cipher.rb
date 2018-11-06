@@ -1,6 +1,6 @@
 class RotCipher
 
-  def initialize text, shift='brute_force'
+  def initialize(text, shift = 'brute_force')
     @text      = text
     @shift     = shift.to_i
     @alphabet  = ('a'..'z').to_a

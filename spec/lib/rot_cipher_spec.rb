@@ -3,21 +3,23 @@ require 'rot_cipher'
 RSpec.describe RotCipher do
 
   describe 'Encoding' do
-
-    specify { expect((RotCipher.new 'aaa', 4).encode).to eq 'eee' }
-    specify { expect((RotCipher.new 'aaa', 5).encode).to eq 'fff' }
+    it 'shifts lower case characters in a string' do
+      cipher = RotCipher.new('ab', 1)
+      expect(cipher.encode).to eq 'bc'
+    end
   end
 
   describe 'Decoding' do
-
-    specify { expect((RotCipher.new 'eee', 4).decode).to eq 'aaa' }
-    specify { expect((RotCipher.new 'fff', 5).decode).to eq 'aaa' }
+    it 'unshifts lower case characters in a string' do
+      cipher = RotCipher.new('bc', 1)
+      expect(cipher.decode).to eq 'ab'
+    end
   end
 
   describe 'Brute Force' do
-
     it 'provides decoding without Rot shift' do
-      expect((RotCipher.new 'bbb').brute_force).to include 'ccc'
+      cipher = RotCipher.new('bb')
+      expect(cipher.brute_force).to include 'cc'
     end
   end
 end
