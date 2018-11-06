@@ -16,6 +16,11 @@ RSpec.describe RotCipher do
       cipher = RotCipher.new('yz', 1)
       expect(cipher.encode).to eq 'za'
     end
+
+    it 'shifts uppercase and lowercase characters' do
+      cipher = RotCipher.new('aB', 1)
+      expect(cipher.encode).to eq 'bC'
+    end
   end
 
   describe 'Decoding' do
@@ -33,12 +38,10 @@ RSpec.describe RotCipher do
       cipher = RotCipher.new('ab', 1)
       expect(cipher.decode).to eq 'za'
     end
-  end
 
-  describe 'Brute Force' do
-    it 'provides decoding without Rot shift' do
-      cipher = RotCipher.new('bb')
-      expect(cipher.brute_force).to include 'cc'
+    it 'unshifts uppercase and lowercase characters' do
+      cipher = RotCipher.new('Bc', -1)
+      expect(cipher.encode).to eq 'Ab'
     end
   end
 end
